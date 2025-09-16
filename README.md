@@ -9,4 +9,4 @@ A biased coin flip, inferring the probability of heads. Run `coin_flips.py`
 A simple linear regression model, inferring the relationship between a predictor and an outcome. Run `linear_regression.py`
 
 ## Example 3: Network hierarchy
-A Bayesian generalization of the Bradley-Terry model of hierarchies in directed interactions. Run `network_hierarchy.py`
+A Bayesian generalization of the Bradley-Terry model of hierarchies in directed interactions. (Depth-only model from https://www.science.org/doi/10.1126/sciadv.adn2654) Run `network_hierarchy.py`

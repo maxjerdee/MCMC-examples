@@ -10,21 +10,20 @@ import stan
 import matplotlib.pyplot as plt
 import os
 
-data_folder = "../data"
+data_folder = "data"
 
 # Load data
 data_df = pd.read_csv(os.path.join(data_folder, "linear_regression_data.csv"))
 
 # Prepare data for STAN (dictionary that matches the STAN code)
-stan_data = {
+STAN_data = {
     'N': len(data_df),
     'x': data_df['x'].values,
     'y': data_df['y'].values
 }
 
 # Define the STAN model
-stan_model_code = """
-// Simple linear regression model
+STAN_model_code = """
 data {
   int<lower=0> N;      // number of data points
   vector[N] x;         // predictor
@@ -46,14 +45,13 @@ model {
   // likelihood
   y ~ normal(b + m * x, sigma);
 }
-
 """
 
 # Build the model (note: the first time you run this, STAN will take some time here, later runs will cache the compilation)
-stan_model = stan.build(stan_model_code, data=stan_data)
+STAN_model = stan.build(STAN_model_code, data=STAN_data)
 
 # Fit the data 
-fit = stan_model.sample(num_chains=4, num_samples=1000)
+fit = STAN_model.sample(num_chains=4, num_samples=1000)
 samples = fit.to_frame()
 
 # Print summary statistics
